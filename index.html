@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naruto Complete Timeline</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    font-family: Arial, sans-serif; 
+    background: #0f0f0f; 
+    color: #eee; 
+    line-height: 1.5; 
+  }
+  header { 
+    text-align: center; 
+    padding: 50px 20px 30px; 
+    background: linear-gradient(#1a1a2e, #0f0f0f); 
+  }
+  header h1 { 
+    font-size: 2.2rem; 
+    color: #ff6b00; 
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  header p { color: #aaa; }
+
+  .timeline { 
+    max-width: 920px; 
+    margin: 0 auto; 
+    padding: 30px 15px 80px; 
+    position: relative; 
+  }
+
+  /* ===== TREE TRUNK ===== */
+  .timeline::before { 
+    content: ''; 
+    position: absolute; 
+    left: 118px; 
+    top: 0; 
+    bottom: 0; 
+    width: 18px; 
+    background: linear-gradient(90deg, #3e2a1a 0%, #5c3d28 30%, #4a3220 70%, #2e1e12 100%);
+    border-radius: 4px;
+    box-shadow: inset 2px 0 4px rgba(0,0,0,0.4), 2px 0 6px rgba(0,0,0,0.3);
+  }
+
+  /* Bark texture lines */
+  .timeline::after {
+    content: '';
+    position: absolute;
+    left: 118px;
+    top: 0;
+    bottom: 0;
+    width: 18px;
+    background: repeating-linear-gradient(
+      180deg,
+      transparent 0px,
+      transparent 28px,
+      rgba(0,0,0,0.15) 29px,
+      transparent 31px
+    );
+    pointer-events: none;
+  }
+
+  .event { 
+    display: flex; 
+    margin-bottom: 60px; 
+    position: relative; 
+  }
+
+  /* Carved year style */
+  .year { 
+    width: 110px; 
+    text-align: right; 
+    padding-right: 30px; 
+    font-weight: bold; 
+    color: #c9a06a; 
+    font-size: 0.92rem; 
+    flex-shrink: 0;
+    text-shadow: 1px 1px 0 #1a1008, -1px -1px 0 #1a1008;
+    letter-spacing: 0.5px;
+  }
+
+  /* Small rotating shuriken next to each event */
+  .event::before { 
+    content: ''; 
+    position: absolute; 
+    left: 121px; 
+    top: 4px; 
+    width: 14px; 
+    height: 14px; 
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff6b00'%3E%3Cpath d='M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z'/%3E%3Ccircle cx='12' cy='12' r='2.2' fill='%230f0f0f'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+    z-index: 3;
+    animation: spin 7s linear infinite;
+  }
+
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+  }
+
+  /* ===== STUCK SHURIKENS ON THE TREE ===== */
+  .stuck-shuriken {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23d4a017'%3E%3Cpath d='M12 2L14.5 9.5L22 12L14.5 14.5L12 22L9.5 14.5L2 12L9.5 9.5L12 2Z'/%3E%3Ccircle cx='12' cy='12' r='2' fill='%231a1208'/%3E%3C/svg%3E") no-repeat center;
+    background-size: contain;
+    z-index: 4;
+    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.6));
+  }
+
+  /* Random positions & rotations */
+  .s1  { top: 8%;   left: 112px; transform: rotate(-25deg); }
+  .s2  { top: 18%;  left: 128px; transform: rotate(40deg); }
+  .s3  { top: 29%;  left: 110px; transform: rotate(-55deg); }
+  .s4  { top: 41%;  left: 130px; transform: rotate(18deg); }
+  .s5  { top: 52%;  left: 113px; transform: rotate(-35deg); }
+  .s6  { top: 63%;  left: 127px; transform: rotate(62deg); }
+  .s7  { top: 74%;  left: 111px; transform: rotate(-12deg); }
+  .s8  { top: 85%;  left: 129px; transform: rotate(48deg); }
+  .s9  { top: 94%;  left: 115px; transform: rotate(-70deg); }
+
+  .content { 
+    flex: 1; 
+    background: #1a1a1a; 
+    padding: 16px 18px; 
+    border-radius: 8px; 
+    margin-left: 40px; 
+    border: 1px solid #333;
+    position: relative;
+  }
+  .content::before {
+    content: '';
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    width: 12px;
+    height: 12px;
+    border-top: 2px solid #ff6b00;
+    border-left: 2px solid #ff6b00;
+    opacity: 0.5;
+  }
+  .content::after {
+    content: '';
+    position: absolute;
+    bottom: 6px;
+    right: 6px;
+    width: 12px;
+    height: 12px;
+    border-bottom: 2px solid #ff6b00;
+    border-right: 2px solid #ff6b00;
+    opacity: 0.5;
+  }
+  .content h3 { color: #fff; margin-bottom: 6px; font-size: 1.15rem; }
+  .content p { color: #ccc; font-size: 0.95rem; margin-bottom: 12px; }
+
+  /* Hanging photo */
+  .photo-frame {
+    display: inline-block;
+    position: relative;
+    margin-top: 20px;
+    transform-origin: top center;
+  }
+  .photo-frame::before {
+    content: '';
+    position: absolute;
+    top: -18px;
+    left: 50%;
+    width: 2px;
+    height: 18px;
+    background: #aaa;
+    transform: translateX(-50%);
+  }
+  .photo-frame::after {
+    content: '';
+    position: absolute;
+    top: -22px;
+    left: 50%;
+    width: 8px;
+    height: 8px;
+    background: #ff6b00;
+    border-radius: 50%;
+    transform: translateX(-50%);
+  }
+  .photo-frame img {
+    max-width: 100%;
+    height: auto;
+    max-height: 240px;
+    border-radius: 4px;
+    display: block;
+    border: 3px solid #333;
+    box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+  }
+
+  /* Different swing timings */
+  .event:nth-child(1)  .photo-frame { animation: swing1 3.8s ease-in-out infinite; }
+  .event:nth-child(2)  .photo-frame { animation: swing2 4.6s ease-in-out infinite; animation-delay: 0.4s; }
+  .event:nth-child(3)  .photo-frame { animation: swing1 5.1s ease-in-out infinite; animation-delay: 1.1s; }
+  .event:nth-child(4)  .photo-frame { animation: swing2 3.5s ease-in-out infinite; animation-delay: 0.7s; }
+  .event:nth-child(5)  .photo-frame { animation: swing1 4.9s ease-in-out infinite; animation-delay: 1.8s; }
+  .event:nth-child(6)  .photo-frame { animation: swing2 4.2s ease-in-out infinite; animation-delay: 0.2s; }
+  .event:nth-child(7)  .photo-frame { animation: swing1 5.4s ease-in-out infinite; animation-delay: 1.4s; }
+  .event:nth-child(8)  .photo-frame { animation: swing2 3.9s ease-in-out infinite; animation-delay: 0.9s; }
+  .event:nth-child(9)  .photo-frame { animation: swing1 4.7s ease-in-out infinite; animation-delay: 0.3s; }
+  .event:nth-child(10) .photo-frame { animation: swing2 5.2s ease-in-out infinite; animation-delay: 1.6s; }
+  .event:nth-child(11) .photo-frame { animation: swing1 3.6s ease-in-out infinite; animation-delay: 0.6s; }
+  .event:nth-child(12) .photo-frame { animation: swing2 4.4s ease-in-out infinite; animation-delay: 1.2s; }
+  .event:nth-child(13) .photo-frame { animation: swing1 5.0s ease-in-out infinite; animation-delay: 0.1s; }
+  .event:nth-child(14) .photo-frame { animation: swing2 3.7s ease-in-out infinite; animation-delay: 1.9s; }
+  .event:nth-child(15) .photo-frame { animation: swing1 4.8s ease-in-out infinite; animation-delay: 0.8s; }
+  .event:nth-child(16) .photo-frame { animation: swing2 5.3s ease-in-out infinite; animation-delay: 1.3s; }
+  .event:nth-child(17) .photo-frame { animation: swing1 4.1s ease-in-out infinite; animation-delay: 0.5s; }
+  .event:nth-child(18) .photo-frame { animation: swing2 3.4s ease-in-out infinite; animation-delay: 1.7s; }
+  .event:nth-child(19) .photo-frame { animation: swing1 4.5s ease-in-out infinite; animation-delay: 0.0s; }
+  .event:nth-child(20) .photo-frame { animation: swing2 5.5s ease-in-out infinite; animation-delay: 1.0s; }
+  .event:nth-child(21) .photo-frame { animation: swing1 3.9s ease-in-out infinite; animation-delay: 1.5s; }
+  .event:nth-child(22) .photo-frame { animation: swing2 4.3s ease-in-out infinite; animation-delay: 0.4s; }
+  .event:nth-child(23) .photo-frame { animation: swing1 5.1s ease-in-out infinite; animation-delay: 0.9s; }
+  .event:nth-child(24) .photo-frame { animation: swing2 3.8s ease-in-out infinite; animation-delay: 1.8s; }
+  .event:nth-child(25) .photo-frame { animation: swing1 4.6s ease-in-out infinite; animation-delay: 0.2s; }
+  .event:nth-child(26) .photo-frame { animation: swing2 5.0s ease-in-out infinite; animation-delay: 1.1s; }
+  .event:nth-child(27) .photo-frame { animation: swing1 4.0s ease-in-out infinite; animation-delay: 0.7s; }
+  .event:nth-child(28) .photo-frame { animation: swing2 4.9s ease-in-out infinite; animation-delay: 1.4s; }
+  .event:nth-child(29) .photo-frame { animation: swing1 3.5s ease-in-out infinite; animation-delay: 0.3s; }
+  .event:nth-child(30) .photo-frame { animation: swing2 5.2s ease-in-out infinite; animation-delay: 1.6s; }
+
+  @keyframes swing1 {
+    0%   { transform: rotate(-2.2deg); }
+    50%  { transform: rotate(2.0deg); }
+    100% { transform: rotate(-2.2deg); }
+  }
+  @keyframes swing2 {
+    0%   { transform: rotate(1.8deg); }
+    50%  { transform: rotate(-2.4deg); }
+    100% { transform: rotate(1.8deg); }
+  }
+
+  footer { 
+    text-align: center; 
+    padding: 30px; 
+    color: #555; 
+    font-size: 0.85rem; 
+  }
+  .kunai {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    vertical-align: middle;
+    margin: 0 6px;
+  }
+  #music-btn {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    background: #ff6b00;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 50px;
+    font-size: 14px;
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    font-weight: bold;
+  }
+  #music-btn:hover {
+    background: #e05a00;
+  }
+</style>
+</head>
+<body>
+
+<audio id="bgm" autoplay loop>
+  <source src="https://dn710604.ca.archive.org/0/items/tvtunes_10548/Naruto%20-%20Sadness%20and%20Sorrow.mp3" type="audio/mpeg">
+</audio>
+<button id="music-btn" onclick="toggleMusic()">Mute Music</button>
+
+<header>
+  <h1>
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"/>
+      <circle cx="12" cy="12" r="2" fill="#ff6b00"/>
+    </svg>
+    Naruto Complete Timeline
+    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 2L14 10L22 12L14 14L12 22L10 14L2 12L10 10L12 2Z"/>
+      <circle cx="12" cy="12" r="2" fill="#ff6b00"/>
+    </svg>
+  </h1>
+  <p>From Kaguya to the Seventh Hokage – Full Major Events</p>
+</header>
+
+<div class="timeline">
+  <!-- Stuck shurikens on the tree -->
+  <div class="stuck-shuriken s1"></div>
+  <div class="stuck-shuriken s2"></div>
+  <div class="stuck-shuriken s3"></div>
+  <div class="stuck-shuriken s4"></div>
+  <div class="stuck-shuriken s5"></div>
+  <div class="stuck-shuriken s6"></div>
+  <div class="stuck-shuriken s7"></div>
+  <div class="stuck-shuriken s8"></div>
+  <div class="stuck-shuriken s9"></div>
+
+  <!-- All your events (unchanged) -->
+  <div class="event">
+    <div class="year">~1000 yrs ago</div>
+    <div class="content">
+      <h3>Kaguya arrives on Earth</h3>
+      <p>Kaguya & Isshiki plant the God Tree. Kaguya betrays Isshiki, eats the Chakra Fruit and becomes the first chakra user.</p>
+      <div class="photo-frame">
+        <img src="https://cdn.myanimelist.net/images/characters/5/292976.jpg" alt="Kaguya">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~990 yrs ago</div>
+    <div class="content">
+      <h3>Birth of Hagoromo & Hamura + Sealing of Kaguya</h3>
+      <p>The twins are born. Later they seal their mother (now the Ten-Tails) on the Moon. Black Zetsu is created.</p>
+      <div class="photo-frame">
+        <img src="https://wallpapercave.com/wp/wp3150781.png" alt="Kaguya sealed">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~900 yrs ago</div>
+    <div class="content">
+      <h3>First Sharingan (Indra)</h3>
+      <p>Indra Ōtsutsuki awakens the first true Sharingan. His descendants become the Uchiha clan.</p>
+      <div class="photo-frame">
+        <img src="https://wallpapercave.com/wp/wp6226781.jpg" alt="Sharingan">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~70 yrs ago</div>
+    <div class="content">
+      <h3>Founding of Konoha + 1st Hokage</h3>
+      <p>Hashirama Senju & Madara Uchiha found Konohagakure. Hashirama is chosen as the First Hokage.</p>
+      <div class="photo-frame">
+        <img src="https://cdn.myanimelist.net/images/characters/10/34809.jpg" alt="Hashirama">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~65–60 yrs ago</div>
+    <div class="content">
+      <h3>Major battles: Madara vs Hashirama</h3>
+      <p>Legendary repeated fights between the two. Ends with Madara’s “death” at the Valley of the End.</p>
+      <div class="photo-frame">
+        <img src="https://qph.cf2.quoracdn.net/main-qimg-a83e0569212fce835a251b927839098a-lq" alt="Hashirama vs Madara">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~55 yrs ago</div>
+    <div class="content">
+      <h3>Death of Izuna Uchiha</h3>
+      <p>Izuna is fatally wounded by Tobirama. He gives his eyes to Madara, creating the first Eternal Mangekyō Sharingan.</p>
+      <div class="photo-frame">
+        <img src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/8403ed0b-71d9-4ed0-86e2-fe16b4eaae25/d2fommt-eb28cc67-ac66-4f74-8dda-76ef55e3b37c.jpg/v1/fill/w_900,h_636,q_75,strp/izuna_uchiha_dead_by_emma_grave_d2fommt-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NjM2IiwicGF0aCI6Ii9mLzg0MDNlZDBiLTcxZDktNGVkMC04NmUyLWZlMTZiNGVhYWUyNS9kMmZvbW10LWViMjhjYzY3LWFjNjYtNGY3NC04ZGRhLTc2ZWY1NWUzYjM3Yy5qcGciLCJ3aWR0aCI6Ijw9OTAwIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmltYWdlLm9wZXJhdGlvbnMiXX0.QpD2GGQEQviJY4_nqIXne7gtG1vxnF4BGZ0yzy5lstc" alt="Izuna">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~50–40 yrs ago</div>
+    <div class="content">
+      <h3>First Great Ninja War + 2nd Hokage</h3>
+      <p>First world war. Tobirama becomes Second Hokage. He later sacrifices himself and appoints Hiruzen as Third Hokage.</p>
+      <div class="photo-frame">
+        <img src="https://cdn.myanimelist.net/images/characters/2/293367.jpg" alt="Tobirama 2nd Hokage">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~25–20 yrs ago</div>
+    <div class="content">
+      <h3>Second Great Ninja War</h3>
+      <p>Jiraiya, Tsunade & Orochimaru become the Legendary Sannin. Dan Katō dies. Jiraiya meets Nagato, Yahiko & Konan.</p>
+      <div class="photo-frame">
+        <img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2020/02/Second-Great-Ninja-War-Naruto-Featured.jpg" alt="Second Great Ninja War">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~20 yrs ago</div>
+    <div class="content">
+      <h3>Death of Yahiko + Formation of Akatsuki</h3>
+      <p>Yahiko is forced to kill himself. Nagato (as Pain) and Konan form the original Akatsuki to bring peace through force.</p>
+      <div class="photo-frame">
+        <img src="https://cdn.myanimelist.net/images/characters/8/73473.jpg" alt="Pain">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~13–10 yrs ago</div>
+    <div class="content">
+      <h3>Third Great Ninja War</h3>
+      <p>War between the great nations. Minato becomes famous as the Yellow Flash of the Leaf.</p>
+      <div class="photo-frame">
+        <img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2020/01/Naruto-Third-Great-Ninja-War.jpg" alt="Third Great Ninja War">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~13 yrs ago</div>
+    <div class="content">
+      <h3>Death of Rin Nohara</h3>
+      <p>Rin is made the Three-Tails jinchūriki. She dies on Kakashi’s Chidori to protect Konoha. Obito falls into despair and joins Madara while also unlocking Mangekyō Sharingan.</p>
+      <div class="photo-frame">
+        <img src="https://static0.srcdn.com/wordpress/wp-content/uploads/2024/09/obito_mourns_rin-27s_death.jpg?q=49&fit=contain&w=750&h=422&dpr=2" alt="Death of Rin">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">~10 yrs ago</div>
+    <div class="content">
+      <h3>Minato becomes 4th Hokage</h3>
+      <p>After the Third War, Minato is appointed Fourth Hokage. Hiruzen retires.</p>
+      <div class="photo-frame">
+        <img src="https://preview.redd.it/if-minato-was-hokage-for-a-longer-time-would-he-have-v0-5ktnh9lbj2rb1.jpg?auto=webp&s=a968d41bf2c9895a814a9c3df15ef424ba23334f" alt="4th Hokage Minato">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Year 0</div>
+    <div class="content">
+      <h3>Birth of Naruto + Nine-Tails Attack</h3>
+      <p>Naruto is born. Obito attacks with Kurama. Minato & Kushina die sealing the Nine-Tails into their son. Hiruzen returns as Hokage.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRSoQrBh9MukL0NDnfQMhymaUgUIrUZWcY3ssHvjQt2xyGFoEe5YFq3TH7X&s=10" alt="Nine-Tails Attack">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 7–8</div>
+    <div class="content">
+      <h3>Itachi awakens Mangekyō</h3>
+      <p>Itachi witnesses Shisui’s suicide after Danzo steals one of his eyes. This trauma awakens Itachi’s Mangekyō Sharingan.</p>
+      <div class="photo-frame">
+        <img src="https://preview.redd.it/how-useful-itachis-mangekyou-sharingan-would-be-in-real-life-v0-gftkovseo4rc1.jpeg?auto=webp&s=d924df6e1b4300a1da65fcf59fdfc118429387ae" alt="Itachi Mangekyō">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 7</div>
+    <div class="content">
+      <h3>Uchiha Clan Massacre</h3>
+      <p>Itachi (with Obito) massacres the Uchiha clan under orders, sparing only Sasuke.</p>
+      <div class="photo-frame">
+        <img src="https://static0.cbrimages.com/wordpress/wp-content/uploads/2023/04/obito-uchiha.jpg" alt="Uchiha Massacre">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 12</div>
+    <div class="content">
+      <h3>Battle of the Great Naruto Bridge</h3>
+      <p>Team 7’s first real mission. They defeat Zabuza & Haku. The bridge is named after Naruto.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7xIy7zthb_IN3MY676hJHeJ8Eo-eZGJcCKU6CE24_Tfjj4KdwhQhBk1ve&s=10" alt="Great Naruto Bridge">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 12–13</div>
+    <div class="content">
+      <h3>Orochimaru’s Invasion + Death of 3rd Hokage</h3>
+      <p>Orochimaru invades during the Chūnin Exams. Hiruzen dies sealing Orochimaru’s arms with the Reaper Death Seal.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTOOsCSMF1ja70yzIBxOi9-otviyjn3feZCStpE1rjFnA&s=10" alt="Orochimaru Invasion">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 13</div>
+    <div class="content">
+      <h3>Sasuke Retrieval Mission + Valley of the End</h3>
+      <p>Sasuke leaves Konoha to join Orochimaru. Naruto chases him. They fight at the Valley of the End. Naruto fails to bring him back.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRTODLOwI2SxdUwgeNUiuXSmhMqTA4TTVgc7B0y_x28cg&s=10" alt="Valley of the End">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 13</div>
+    <div class="content">
+      <h3>Tsunade becomes 5th Hokage</h3>
+      <p>After Hiruzen’s death, Tsunade is convinced by Jiraiya and Naruto to become the Fifth Hokage.</p>
+      <div class="photo-frame">
+        <img src="https://cdn.myanimelist.net/images/characters/12/523646.jpg" alt="Tsunade">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 15–16</div>
+    <div class="content">
+      <h3>Death of Jiraiya</h3>
+      <p>Jiraiya infiltrates the Hidden Rain to investigate Pain. He dies after discovering Pain’s identity, leaving a coded message for Naruto.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxI923CjpVdepafxyUfLnegFTQfONY-XJUXvugKCOZYg&s=10" alt="Jiraiya Death">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 16</div>
+    <div class="content">
+      <h3>Itachi’s Death + Sasuke awakens Mangekyō</h3>
+      <p>Sasuke kills Itachi. After learning the truth from Obito, the grief of losing his brother awakens Sasuke’s Mangekyō Sharingan.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTyB-IjQSZYmr6SwJDPnsvksCWZfI1tVG-k4z7EIJG6fw&s=10" alt="Itachi Death">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 16</div>
+    <div class="content">
+      <h3>Sasuke obtains Eternal Mangekyō</h3>
+      <p>Sasuke transplants Itachi’s eyes, gaining the Eternal Mangekyō Sharingan and unlocking Susanoo.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS8Smf3wFVyimJl4rUse0Ps9jg8lbkHLRaYIvXBaNjK1A&s=10" alt="Eternal Mangekyō">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 16</div>
+    <div class="content">
+      <h3>Pain destroys Konoha</h3>
+      <p>Nagato (Pain) completely destroys the village. Naruto returns and defeats him, becoming a hero.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTux1mxkmxQ9a8Lcfnf21c3TwSmiXTnNPjDpmLa7LISSw&s=10" alt="Pain Assault">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 17</div>
+    <div class="content">
+      <h3>Death of Danzo (by Sasuke)</h3>
+      <p>During the Five Kage Summit arc, Sasuke confronts and kills Danzo Shimura.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRl-_Ga7ZGwecUOV44dzca6bOGtqHqXDusZbtfk6Y6X_g&s=10" alt="Death of Danzo">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 17</div>
+    <div class="content">
+      <h3>Kabuto’s Edo Tensei – Revivals of Old Shinobi</h3>
+      <p>Kabuto uses Impure World Reincarnation to revive hundreds of dead shinobi (previous Hokages, Itachi, Madara, Zabuza, Haku, Asuma, Deidara, Kakuzu, and many more) to fight in the Fourth Great Ninja War.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSMi0ZOIEgpSkO_KNTX2PyCjOaxzTZ2FL-GdsC_K6a4Pr3ocMlx1q-5YdE&s=10" alt="Edo Tensei">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 17</div>
+    <div class="content">
+      <h3>Fourth Great Ninja War + Defeat of Kaguya</h3>
+      <p>Allied Shinobi Forces vs Madara, Obito and the revived Kaguya. Naruto & Sasuke seal Kaguya. War ends on Naruto’s 17th birthday.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQerKwoyTL2otYRBP6ho9uX9Xf47tFIdZ-6T0rgAhyxxw&s=10" alt="Fourth Great Ninja War">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 17</div>
+    <div class="content">
+      <h3>Valley of the End – Final Battle</h3>
+      <p>Right after the war, Naruto and Sasuke fight one last time at the Valley of the End. Both lose an arm. Sasuke is finally redeemed.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQF7qF2B3rwcsbn-D2FZvCukUPiHvzdI9d6rQ06XfLOcA&s=10" alt="Final Valley">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 17–18</div>
+    <div class="content">
+      <h3>Kakashi becomes 6th Hokage</h3>
+      <p>After the war, Tsunade steps down. Kakashi is appointed Sixth Hokage.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-kvdZE0_baBPM2xNasLrbjIFTYyvxJAo-fU8ycg3YkA&s=10" alt="Kakashi Hokage">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age 19</div>
+    <div class="content">
+      <h3>Naruto & Hinata marry</h3>
+      <p>Two years after the war, Naruto and Hinata get married.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR0I1Kd-QGpsBo6BR7H-s8a6jEH3YAeAC9FH_3pEHUyg&s=10" alt="Naruto Hinata Wedding">
+      </div>
+    </div>
+  </div>
+
+  <div class="event">
+    <div class="year">Age ~32</div>
+    <div class="content">
+      <h3>Naruto becomes 7th Hokage</h3>
+      <p>Years later, Naruto finally achieves his lifelong dream and becomes the Seventh Hokage of Konohagakure.</p>
+      <div class="photo-frame">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQiID_dgYidMSlMCIH4jZfQGWuunm-WjRPV4UtaKPn5qw&s=10" alt="Naruto Hokage">
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <svg class="kunai" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2L13 9L20 12L13 15L12 22L11 15L4 12L11 9L12 2Z"/>
+    <line x1="12" y1="22" x2="12" y2="24"/>
+  </svg>
+  Scroll slowly — this is the full journey of the shinobi world
+  <svg class="kunai" viewBox="0 0 24 24" fill="none" stroke="#ff6b00" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M12 2L13 9L20 12L13 15L12 22L11 15L4 12L11 9L12 2Z"/>
+    <line x1="12" y1="22" x2="12" y2="24"/>
+  </svg>
+</footer>
+
+<script>
+  const bgm = document.getElementById('bgm');
+  const btn = document.getElementById('music-btn');
+  let isPlaying = true;
+
+  bgm.play().catch(() => {
+    btn.textContent = "Play Music";
+    isPlaying = false;
+  });
+
+  function toggleMusic() {
+    if (isPlaying) {
+      bgm.pause();
+      btn.textContent = "Play Music";
+    } else {
+      bgm.play();
+      btn.textContent = "Mute Music";
+    }
+    isPlaying = !isPlaying;
+  }
+</script>
+
+</body>
+</html>
