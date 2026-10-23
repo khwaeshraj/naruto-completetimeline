@@ -25,13 +25,6 @@ Inspired by the interactive storytelling style of [neal.fun](https://neal.fun).
 
 ---
 
-### 🛠️ How to Use
+### Live Link
 
-1. Download or clone this repository
-2. Open `index.html` in any modern browser
-3. Click the **Play Music** button if the audio doesn’t start automatically
-4. Scroll slowly and enjoy the journey
-
-```bash
-git clone https://github.com/your-username/naruto-complete-timeline.git
-cd naruto-complete-timeline
+https://khwaeshraj.github.io/naruto-completetimeline/
